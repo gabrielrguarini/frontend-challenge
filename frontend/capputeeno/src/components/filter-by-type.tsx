@@ -53,7 +53,7 @@ export function FilterByType() {
         selected={type === FilterType.MUG}
         onClick={() => handleChangeType(FilterType.MUG)}
       >
-        Todos Produtos
+        Canecas
       </FilterItem>
     </FilterList>
   );

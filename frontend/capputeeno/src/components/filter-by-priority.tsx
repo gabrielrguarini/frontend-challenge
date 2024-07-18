@@ -40,6 +40,7 @@ const PriorityFilter = styled.ul`
   padding: 12px 16px;
   list-style: none;
   top: 100%;
+  z-index: 999;
 
   li {
     color: var(--text-dark);
