@@ -12,7 +12,7 @@ const Card = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border-radius: 0px 0px 4px 4px;
+  border-radius: 8px 8px 4px 4px;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   width: 256px;
@@ -20,6 +20,7 @@ const Card = styled.div`
   img {
     width: 256px;
     height: 300px;
+    border-radius: 8px 8px 0px 0px;
   }
 
   h3 {
@@ -41,7 +42,7 @@ const Card = styled.div`
     align-items: start;
     justify-content: center;
     flex-direction: column;
-    padding: 0px 8px;
+    padding: 8px 8px;
     > div {
       width: 228px;
       height: 1px;

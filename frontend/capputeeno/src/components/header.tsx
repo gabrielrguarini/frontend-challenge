@@ -11,21 +11,32 @@ const TagHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 160px;
+  padding: 12px 24px;
+
+  @media (min-width: ${({ theme }) => theme.desktopBreakPoint}) {
+    padding: 20px 160px;
+  }
 `;
 
 const Logo = styled.a`
   color: var(--logo-color);
   font-weight: 400;
-  font-size: 40px;
+  font-size: 24px;
   line-height: 60px;
+  text-decoration: none;
+
+  @media (min-width: ${({ theme }) => theme.desktopBreakPoint}) {
+    font-size: 40px;
+  }
 `;
 
 export default function Header() {
   const { setSearch, search } = useFilter();
   return (
     <TagHeader>
-      <Logo className={sairaStencil.className}>Capputeeno</Logo>
+      <Logo href="#" className={sairaStencil.className}>
+        Capputeeno
+      </Logo>
 
       <PrimaryInputWSearchIcon
         value={search}
