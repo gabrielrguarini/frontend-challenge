@@ -24,9 +24,9 @@ export default function Header() {
   return (
     <TagHeader>
       <Logo className={sairaStencil.className}>Capputeeno</Logo>
-      <div>
-        <PrimaryInputWSearchIcon placeholder="Procurando por algo específico?" />
-      </div>
+
+      <PrimaryInputWSearchIcon placeholder="Procurando por algo específico?" />
+
       <CartControl />
     </TagHeader>
   );
