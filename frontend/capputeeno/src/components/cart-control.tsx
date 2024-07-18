@@ -9,11 +9,15 @@ const CartCount = styled.span`
   font-size: 10px;
   background-color: var(--delete-color);
   color: white;
-  margin-left: -12px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 `;
 
 const Container = styled.div`
   position: relative;
+  width: 28px;
+  height: 31px;
 `;
 
 export function CartControl() {

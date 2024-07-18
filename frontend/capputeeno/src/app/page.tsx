@@ -9,10 +9,14 @@ const PageWrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 34px 160px;
+  padding: 12px 24px;
   min-height: 100vh;
   background-color: var(--bg-primary);
   min-height: 100vh;
+
+  @media (min-width: ${({ theme }) => theme.desktopBreakPoint}) {
+    padding: 34px 160px;
+  }
 `;
 export default function Home() {
   const client = new QueryClient();
