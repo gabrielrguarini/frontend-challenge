@@ -4,6 +4,7 @@ import BackIcon from "@/components/icons/back-icon";
 import BagIcon from "@/components/icons/bag-icon";
 import CartIcon from "@/components/icons/cart-icon";
 import { useProduct } from "@/hooks/useProduct";
+import { useRouter } from "next/navigation";
 import styled from "styled-components";
 
 const ProductContainer = styled.div`
@@ -104,12 +105,17 @@ const SectionProduct = styled.section`
 `;
 
 export default function Product({ params }: { params: { id: string } }) {
+  const router = useRouter();
   const { product } = useProduct(params.id);
   console.log(product);
 
   return (
     <ProductContainer>
-      <BackButton>
+      <BackButton
+        onClick={() => {
+          router.push("/");
+        }}
+      >
         <BackIcon />
         Voltar
       </BackButton>
