@@ -4,6 +4,8 @@ import { Saira_Stencil_One } from "next/font/google";
 import { PrimaryInputWSearchIcon } from "./primary-input";
 import { CartControl } from "./cart-control";
 import { useFilter } from "@/hooks/useFilter";
+import Link from "next/link";
+import { DefaultHeaderLayout } from "./default-header-layout";
 
 const sairaStencil = Saira_Stencil_One({ subsets: ["latin"], weight: "400" });
 
@@ -11,43 +13,35 @@ const TagHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 24px;
-
-  @media (min-width: ${({ theme }) => theme.desktopBreakPoint}) {
-    padding: 20px 160px;
-  }
+  max-width: 1440px;
+  margin: auto;
 `;
 
-const Logo = styled.a`
+const Logo = styled(Link)`
   color: var(--logo-color);
   font-weight: 400;
   font-size: 20px;
   line-height: 60px;
   text-decoration: none;
-
-  @media (min-width: ${({ theme }) => theme.tabletBreakPoint}) {
-    font-size: 24px;
-  }
-  @media (min-width: ${({ theme }) => theme.desktopBreakPoint}) {
-    font-size: 40px;
-  }
 `;
 
 export default function Header() {
   const { setSearch, search } = useFilter();
   return (
-    <TagHeader>
-      <Logo href="#" className={sairaStencil.className}>
-        Capputeeno
-      </Logo>
+    <DefaultHeaderLayout>
+      <TagHeader>
+        <Logo href="/" className={sairaStencil.className}>
+          Capputeeno
+        </Logo>
 
-      <PrimaryInputWSearchIcon
-        value={search}
-        handleChange={setSearch}
-        placeholder="Procurando por algo específico?"
-      />
+        <PrimaryInputWSearchIcon
+          value={search}
+          handleChange={setSearch}
+          placeholder="Procurando por algo específico?"
+        />
 
-      <CartControl />
-    </TagHeader>
+        <CartControl />
+      </TagHeader>
+    </DefaultHeaderLayout>
   );
 }

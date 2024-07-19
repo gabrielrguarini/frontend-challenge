@@ -1,10 +1,12 @@
 "use client";
+import { useRouter } from "next/navigation";
 import styled from "styled-components";
 
 interface ProductCardProps {
   image: string;
   title: string;
   price: number;
+  id: string;
 }
 
 const Card = styled.div`
@@ -54,8 +56,13 @@ const Card = styled.div`
 `;
 
 export function ProductCard(props: ProductCardProps) {
+  const router = useRouter();
   return (
-    <Card>
+    <Card
+      onClick={() => {
+        router.push(`/product/${props.id}`);
+      }}
+    >
       <img src={props.image} />
       <div>
         <h3>{props.title}</h3>
