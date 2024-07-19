@@ -1,8 +1,8 @@
 "use client";
 
+import { BackButton } from "@/components/back-button";
 import BackIcon from "@/components/icons/back-icon";
 import BagIcon from "@/components/icons/bag-icon";
-import CartIcon from "@/components/icons/cart-icon";
 import { useProduct } from "@/hooks/useProduct";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
@@ -12,21 +12,6 @@ const ProductContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start;
-`;
-
-const BackButton = styled.button`
-  background: transparent;
-  border: none;
-  cursor: pointer;
-
-  font-family: inherit;
-  font-weight: 500;
-  color: #617480;
-  font-size: 16px;
-  line-height: 21px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
 `;
 
 const ProductInfo = styled.div`
@@ -101,13 +86,36 @@ const SectionProduct = styled.section`
     text-transform: uppercase;
     color: var(--text-button);
     padding: 10px;
+    cursor: pointer;
   }
 `;
 
 export default function Product({ params }: { params: { id: string } }) {
   const router = useRouter();
   const { product } = useProduct(params.id);
-  console.log(product);
+  if (!product) return <h1>Carregando...</h1>;
+
+  const handleAddToCart = () => {
+    let cartItems = localStorage.getItem("cart-items");
+    if (cartItems) {
+      let cartItemsArray = JSON.parse(cartItems);
+
+      let existingProductIndex = cartItemsArray.findIndex(
+        (item: { id: string }) => item.id === params.id
+      );
+
+      if (existingProductIndex != -1) {
+        cartItemsArray[existingProductIndex].quantity += 1;
+      } else {
+        cartItemsArray.push({ ...product, quantity: 1, id: product.id });
+      }
+
+      localStorage.setItem("cart-items", JSON.stringify(cartItemsArray));
+    } else {
+      const newCart = [{ ...product, quantity: 1, id: params.id }];
+      localStorage.setItem("cart-items", JSON.stringify(newCart));
+    }
+  };
 
   return (
     <ProductContainer>
@@ -137,7 +145,7 @@ export default function Product({ params }: { params: { id: string } }) {
             <h3>Descrição</h3>
             <p>{product?.description}</p>
           </div>
-          <button>
+          <button onClick={handleAddToCart}>
             <BagIcon /> Adicionar ao carrinho
           </button>
         </SectionProduct>

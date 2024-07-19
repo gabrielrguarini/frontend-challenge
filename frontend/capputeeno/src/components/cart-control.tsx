@@ -1,7 +1,7 @@
 "use client";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
 import CartIcon from "./icons/cart-icon";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 
 const CartCount = styled.span`
   border-radius: 100%;
@@ -21,12 +21,20 @@ const Container = styled.div`
 `;
 
 export function CartControl() {
-  const { value } = useLocalStorage("cart-items", []);
+  const [cartCount, setCartCount] = useState<number>();
+  useEffect(() => {
+    const cartItem = localStorage.getItem("cart-items");
+    if (cartItem) {
+      setCartCount(JSON.parse(cartItem).length);
+    } else {
+      setCartCount(0);
+    }
+  }, [cartCount]);
 
   return (
     <Container>
       <CartIcon />
-      {value.length > 0 && <CartCount>{value.length}</CartCount>}
+      {<CartCount>{cartCount}</CartCount>}
     </Container>
   );
 }
