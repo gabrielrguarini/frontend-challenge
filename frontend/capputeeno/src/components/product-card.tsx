@@ -18,6 +18,7 @@ const Card = styled.div`
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   width: 256px;
+  cursor: pointer;
 
   img {
     width: 256px;

@@ -55,12 +55,3 @@ export function PrimaryInputWSearchIcon(props: InputProps) {
     </InputContainer>
   );
 }
-
-// svg {
-//   width: 24px;
-//   height: 24px;
-//   position: absolute;
-//   right: 20px;
-//   top: 50%;
-//   transform: translateY(-50%);
-// }
