@@ -8,7 +8,7 @@ const PageWrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 100%;
+  max-width: 100%;
 `;
 export default function Home() {
   const client = new QueryClient();

@@ -2,6 +2,6 @@
 import styled from "styled-components";
 
 export const DefaultPageWidth = styled.div`
-  max-width: 1440px;
+  max-width: 1120px;
   margin: auto;
 `;
