@@ -10,19 +10,27 @@ import styled from "styled-components";
 const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: start;
+  min-height: 87.95vh;
 `;
 
 const ProductInfo = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+
+  max-width: 100vw;
   margin-top: 22px;
+  @media (min-width: ${(props) => props.theme.desktopBreakPoint}) {
+    flex-direction: row;
+  }
 
   img {
     max-width: 640px;
     width: 50%;
     border-radius: 4px;
+    margin: auto;
   }
 `;
 const SectionProduct = styled.section`
@@ -75,7 +83,6 @@ const SectionProduct = styled.section`
     justify-content: center;
     align-items: center;
     gap: 12px;
-    width: 448px;
     border-radius: 4px;
     border: none;
     background-color: var(--button-primary);

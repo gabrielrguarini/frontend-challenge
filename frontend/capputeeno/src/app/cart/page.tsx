@@ -2,6 +2,8 @@
 import { BackButton } from "@/components/back-button";
 import BackIcon from "@/components/icons/back-icon";
 import { Product } from "@/types/product";
+import priceFormat from "@/utils/price-format";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 const PageWrapper = styled.main`
   display: flex;
@@ -9,7 +11,13 @@ const PageWrapper = styled.main`
 `;
 const CartWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  min-height: 84.5vh;
+  gap: 8px;
+  @media (min-width: ${(props) => props.theme.desktopBreakPoint}) {
+    flex-direction: row;
+  }
 `;
 
 const CartContainer = styled.div`
@@ -34,8 +42,29 @@ const ListCard = styled.li`
   display: flex;
   background-color: #fff;
   list-style: none;
-  max-width: 736px;
+  width: 100%;
   margin-top: 16px;
+  height: 210px;
+  @media (min-width: ${(props) => props.theme.desktopBreakPoint}) {
+    max-width: 736px;
+  }
+  @media (max-width: ${(props) => props.theme.tabletBreakPoint}) {
+    max-height: 180px;
+    h3 {
+      font-size: 16px;
+      line-height: 150%;
+    }
+    p {
+      font-size: 12px;
+      line-height: 150%;
+    }
+  }
+  p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+  }
 
   img {
     max-width: 256px;
@@ -65,7 +94,6 @@ const FinishContainer = styled.div`
   background-color: #fff;
   text-align: left;
   padding: 16px 24px;
-  gap: 8px;
   max-height: 80vh;
   h3 {
     text-transform: uppercase;
@@ -110,12 +138,41 @@ interface cartItemInterface extends Product {
   quantity: number;
 }
 export default function Cart() {
-  const products = localStorage.getItem("cart-items");
-  if (!products) {
-    return <p>Carrinho vazio</p>;
+  const [loading, setLoading] = useState(true);
+  const [cartItems, setCartItems] = useState<cartItemInterface[]>([]);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const products = localStorage.getItem("cart-items");
+      if (products) {
+        setCartItems(JSON.parse(products));
+      }
+      setLoading(false);
+    }
+  }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
   }
-  const cartItems: cartItemInterface[] = JSON.parse(products);
-  console.log(products);
+  if (cartItems.length === 0) return <h1>Carrinho vazinho</h1>;
+
+  const cartTotal = cartItems.reduce(
+    (sum, item) => (sum += item.price_in_cents * item.quantity),
+    0
+  );
+
+  const handleUpdateQuantity = (id: string, quantity: number) => {
+    const newValue = cartItems.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          quantity: quantity,
+        };
+      }
+      return item;
+    });
+    setCartItems(newValue);
+    localStorage.setItem("cart-items", JSON.stringify(newValue));
+  };
   return (
     <PageWrapper>
       <BackButton>
@@ -126,7 +183,7 @@ export default function Cart() {
         <CartContainer>
           <h1>Seu Carrinho</h1>
           <p>
-            Total (3 produtos) <span>R$161,00</span>
+            Total (3 produtos) <span>{priceFormat(cartTotal)}</span>
           </p>
           <ul>
             {cartItems.map((item) => (
@@ -136,14 +193,20 @@ export default function Cart() {
                   <h3>{item.name}</h3>
                   <p>{item.description}</p>
                   <div>
-                    <select name="quantidade">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
+                    <select
+                      name="quantidade"
+                      defaultValue={item.quantity}
+                      onChange={(e) => {
+                        handleUpdateQuantity(item.id, Number(e.target.value));
+                      }}
+                    >
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                      <option value={3}>3</option>
+                      <option value={4}>4</option>
+                      <option value={5}>5</option>
                     </select>
-                    <span>R$ {item.price_in_cents / 100}</span>
+                    <span>{priceFormat(item.price_in_cents)}</span>
                   </div>
                 </div>
               </ListCard>
@@ -154,7 +217,7 @@ export default function Cart() {
           <h3>Resumo do pedido </h3>
           <div>
             <p>Subtotal de produtos</p>
-            <span>R$ 161,00</span>
+            <span>{priceFormat(cartTotal)}</span>
           </div>
           <div>
             <p>Entrega</p>
@@ -163,11 +226,10 @@ export default function Cart() {
           <div id="line"></div>
           <div id="total">
             <p>Total</p>
-            <span>R$ 201,00</span>
+            <span>{priceFormat(cartTotal + 4000)}</span>
           </div>
           <button>Finalizar a compra</button>
         </FinishContainer>
-        <div></div>
       </CartWrapper>
     </PageWrapper>
   );
