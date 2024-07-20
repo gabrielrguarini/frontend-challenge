@@ -66,6 +66,7 @@ const FinishContainer = styled.div`
   text-align: left;
   padding: 16px 24px;
   gap: 8px;
+  max-height: 80vh;
   h3 {
     text-transform: uppercase;
     font-size: 20px;

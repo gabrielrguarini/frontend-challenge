@@ -2,6 +2,7 @@
 import CartIcon from "./icons/cart-icon";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const CartCount = styled.span`
   border-radius: 100%;
@@ -18,9 +19,11 @@ const Container = styled.div`
   position: relative;
   width: 28px;
   height: 31px;
+  cursor: pointer;
 `;
 
 export function CartControl() {
+  const router = useRouter();
   const [cartCount, setCartCount] = useState<number>();
   useEffect(() => {
     const cartItem = localStorage.getItem("cart-items");
@@ -32,9 +35,13 @@ export function CartControl() {
   }, [cartCount]);
 
   return (
-    <Container>
+    <Container
+      onClick={() => {
+        router.push("/cart");
+      }}
+    >
       <CartIcon />
-      {<CartCount>{cartCount}</CartCount>}
+      {Number(cartCount) > 0 && <CartCount>{cartCount}</CartCount>}
     </Container>
   );
 }
