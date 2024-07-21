@@ -1,6 +1,7 @@
 "use client";
 import { BackButton } from "@/components/back-button";
 import BackIcon from "@/components/icons/back-icon";
+import TrashIcon from "@/components/icons/trash-icon";
 import { Product } from "@/types/product";
 import priceFormat from "@/utils/price-format";
 import { useEffect, useState } from "react";
@@ -40,11 +41,21 @@ const CartContainer = styled.div`
 `;
 const ListCard = styled.li`
   display: flex;
+  position: relative;
   background-color: #fff;
   list-style: none;
   width: 100%;
   margin-top: 16px;
   height: 210px;
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+  }
+
   @media (min-width: ${(props) => props.theme.desktopBreakPoint}) {
     max-width: 736px;
   }
@@ -159,9 +170,14 @@ export default function Cart() {
     (sum, item) => (sum += item.price_in_cents * item.quantity),
     0
   );
+  const handleDelete = (id: string) => {
+    const newCart = cartItems.filter((item) => item.id !== id);
+    setCartItems(newCart);
+    localStorage.setItem("cart-items", JSON.stringify(newCart));
+  };
 
   const handleUpdateQuantity = (id: string, quantity: number) => {
-    const newValue = cartItems.map((item) => {
+    const newCart = cartItems.map((item) => {
       if (item.id === id) {
         return {
           ...item,
@@ -170,8 +186,8 @@ export default function Cart() {
       }
       return item;
     });
-    setCartItems(newValue);
-    localStorage.setItem("cart-items", JSON.stringify(newValue));
+    setCartItems(newCart);
+    localStorage.setItem("cart-items", JSON.stringify(newCart));
   };
   return (
     <PageWrapper>
@@ -191,6 +207,10 @@ export default function Cart() {
                 <img src={item.image_url} />
                 <div>
                   <h3>{item.name}</h3>
+                  <button onClick={() => handleDelete(item.id)}>
+                    <TrashIcon />
+                  </button>
+
                   <p>{item.description}</p>
                   <div>
                     <select
