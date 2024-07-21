@@ -4,6 +4,7 @@ import BackIcon from "@/components/icons/back-icon";
 import TrashIcon from "@/components/icons/trash-icon";
 import { Product } from "@/types/product";
 import priceFormat from "@/utils/price-format";
+import router, { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 const PageWrapper = styled.main`
@@ -151,6 +152,7 @@ interface cartItemInterface extends Product {
 export default function Cart() {
   const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState<cartItemInterface[]>([]);
+  const router = useRouter();
   useEffect(() => {
     if (typeof window !== "undefined") {
       const products = localStorage.getItem("cart-items");
@@ -191,7 +193,11 @@ export default function Cart() {
   };
   return (
     <PageWrapper>
-      <BackButton>
+      <BackButton
+        onClick={() => {
+          router.push("/");
+        }}
+      >
         <BackIcon />
         Voltar
       </BackButton>
