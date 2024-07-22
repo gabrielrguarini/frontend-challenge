@@ -14,6 +14,9 @@ const ListContainer = styled.div`
 
 export function ProductsList() {
   const { products } = useProducts();
+  if (products?.length === 0) {
+    return <h1>Nenhum produto nesta página</h1>;
+  }
   return (
     <ListContainer>
       {products?.map((product) => (

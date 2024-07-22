@@ -7,10 +7,14 @@ export function getCategoryByType(type: FilterType) {
   return "";
 }
 
-export function mountyQuery(type: FilterType, priority: PriorityTypes) {
+export function mountyQuery(
+  type: FilterType,
+  priority: PriorityTypes,
+  page: number
+) {
   if (type === FilterType.ALL && priority === PriorityTypes.POPULARITY)
     return `query{
-      allProducts(sortField: "sales", sortOrder: "DSC"){
+      allProducts(page:${page}, perPage:12, sortField: "sales", sortOrder: "DSC"){
         id
         name
         price_in_cents

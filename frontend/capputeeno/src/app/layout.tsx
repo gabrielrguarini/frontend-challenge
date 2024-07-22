@@ -20,7 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={saira.className}>
+      <body
+        className={saira.className}
+        style={{ minHeight: "100vh", backgroundColor: "#f0f0f5" }}
+      >
         <DefaultProviders>
           <Header />
           <DefaultPageLayout>

@@ -11,14 +11,14 @@ const fetcher = (query: string): AxiosPromise<ProductsFetchResponse> => {
 };
 
 export function useProducts() {
-  const { type, priority, search } = useFilter();
+  const { type, priority, search, page } = useFilter();
   const searchDeferred = useDeferredValue(search);
 
-  const query = mountyQuery(type, priority);
+  const query = mountyQuery(type, priority, page);
 
   const { data } = useQuery({
     queryFn: () => fetcher(query),
-    queryKey: ["products", type, priority],
+    queryKey: ["products", type, priority, page],
   });
 
   const products = data?.data?.data?.allProducts;
