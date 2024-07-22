@@ -3,6 +3,8 @@ import CartIcon from "./icons/cart-icon";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { Product } from "@/types/product";
 
 const CartCount = styled.span`
   border-radius: 100%;
@@ -25,14 +27,10 @@ const Container = styled.div`
 export function CartControl() {
   const router = useRouter();
   const [cartCount, setCartCount] = useState<number>();
+  const { value } = useLocalStorage<Product[]>("cart-items", []);
   useEffect(() => {
-    const cartItem = localStorage.getItem("cart-items");
-    if (cartItem) {
-      setCartCount(JSON.parse(cartItem).length);
-    } else {
-      setCartCount(0);
-    }
-  }, [cartCount]);
+    setCartCount(value.length);
+  }, [value]);
 
   return (
     <Container

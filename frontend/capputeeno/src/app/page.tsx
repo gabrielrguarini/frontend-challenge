@@ -1,7 +1,7 @@
 "use client";
 import { FilterBar } from "@/components/filter-bar";
+import ListPerPage from "@/components/list-per-page";
 import { ProductsList } from "@/components/products-list";
-import { QueryClient } from "@tanstack/react-query";
 import styled from "styled-components";
 
 const PageWrapper = styled.main`
@@ -11,11 +11,10 @@ const PageWrapper = styled.main`
   max-width: 100%;
 `;
 export default function Home() {
-  const client = new QueryClient();
-
   return (
     <PageWrapper>
       <FilterBar />
+      <ListPerPage />
       <ProductsList />
     </PageWrapper>
   );
