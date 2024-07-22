@@ -1,62 +1,78 @@
-![image](https://user-images.githubusercontent.com/40845824/121069742-3accdb00-c7a4-11eb-87d0-3dc47e433762.png)
+# 🛍️ E-commerce - Capputeeno
+Bem-vindo ao projeto E-commerce - Capputeeno, um projeto de e-commerce desenvolvido como parte de um desafio técnico. O objetivo deste projeto é demonstrar habilidades em desenvolvimento front-end, utilizando tecnologias modernas e boas práticas.
+
+![image](https://github.com/user-attachments/assets/f2006437-8363-44b0-b070-7b77d0a99ef5)
 
 
-# 🚀 Front end challenge
-
-Bem-vindo(a). Este é o desafio Front end!
-
-O objetivo deste desafio é avaliar suas habilidades de programação.
-Quando sua solução estiver pronta, basta responder o e-mail que recebeu com o link do seu repo aqui no Github!
-Em seguida, enviaremos o feedback e as instruções dos próximos passos!
-
-Caso tenha alguma dúvida, nós estamos disponíveis no email *recrutamento@rocketseat.com.br*
-Bom desafio!
-
-> ⚠️ **É importante que o seu repo esteja público, caso contrário não iremos conseguir avaliar sua resposta**
-
+# 📑 Índice
+* Contexto
+* Funcionalidades
+* Tecnologias Utilizadas
+* Instruções de Instalação
+* Como Usar
+* Deploy
+* Melhorias Futuras
+* Contato
 # 🧠 Contexto
+Este projeto foi desenvolvido com base no seguinte [protótipo do Figma](https://www.figma.com/file/rET9F2CeUEJdiVN7JRu993/E-commerce---capputeeno?node-id=680%3A6449). O objetivo é criar uma plataforma de e-commerce para venda de canecas e camisetas, com diversas funcionalidades essenciais para uma loja online.
 
-![Protótipo](https://storage.googleapis.com/xesque-dev/challenge-images/prototipo.png?42)
+# 📋 Funcionalidades
+ - [X] Catálogo de produtos com paginação
+ - [X] Filtragem de produtos por categoria
+ - [X] Busca por nome do produto
+ - [X] Adicionar e remover produtos do carrinho
+ 
+# 🛠 Tecnologias Utilizadas
+- Framework: Next.js
+- Linguagem: Typescript
+- Estilização: styled-components
+- Gerenciamento de Estado: Context API e Local Storage
+- API: GraphQL
 
-O desafio será implementar um e-commerce para venda de canecas e camisetas que deverá ter as seguintes funcionalidades:
-- [ ] Catálogo de produtos com paginação
-- [ ] Filtragem produtos por categoria
-- [ ] Busca por nome do produto
-- [ ] Adicionar e remover produtos do carrinho
-- [ ] Finalizar compra
+# 🚀 Instruções de Instalação
+Para executar este projeto localmente, siga os passos abaixo:
 
-## 📋 Instruções
+Clone o repositório:
+```javascript
+git clone https://github.com/gabrielrguarini/frontend-challenge.git
+```
+Navegue até o diretório da api:
+```javascript
+cd frontend-challenge/api
+```
+Instale as dependências:
+```javascript 
+npm install
+```
+Execute a API GraphQL:
+```javascript
+npm run start
+```
+Em outro terminal dentro da pasta `\frontend\capputeeno` instale as dependências:
+```javascript
+npm install
+```
 
-Chegou a hora de colocar a mão na massa!
+Inicie o projeto Next.js:
+```javascript
+npm run dev
+```
+# 📖 Como Usar
+Navegue pelo catálogo de produtos.
+Utilize a filtragem por categorias ou a busca para encontrar produtos específicos.
+Adicione produtos ao carrinho.
+Acesse o carrinho para revisar os itens e finalizar a compra.
 
-- Siga [esse protótipo](https://www.figma.com/file/rET9F2CeUEJdiVN7JRu993/E-commerce---capputeeno?node-id=680%3A6449)
-- Utilize Next.js e Typescript
-- Faça a estilização com styled-components
-- Utilize o local storage para gerenciar o carrinho
-- Por favor, inclua no README as instruções de instalação do projeto
-- Sinta-se livre para incluir quaisquer observações
-- Consuma nossa **API GraphQL** rodando o comando `yarn start` na pasta `api`
 
-## ✔️ Critérios de Avaliação
+# 🔧 Melhorias Futuras
+Implementação de testes unitários e e2e.
+Melhorias na acessibilidade.
+Melhorias na usabilidade e experiência do usuário.
+Utilização de cache do Next.js para otimização de performance.
+# 📞 Contato
+Se você tiver alguma dúvida ou quiser discutir este projeto, sinta-se à vontade para entrar em contato comigo:
 
-Além dos requisitos levantados acima, iremos olhar para os seguintes critérios durante a correção do desafio:
-
-- Gerenciamento de estado
-- Componentização
-- Responsividade
-- Preocupação com usabilidade
-- Preocupação com acessibilidade
-- Testes e2e
-- Padrões de código
-- Padrão de commits (_Conventional_)
-
-## 😎 Seria legal
-- Fazer deploy na vercel ou em outro local de sua preferência e disponibilizar um link de visualização, se necessário utilize esse servidor para a API GraphQL:  https://rocketseat-frontend-challenge.herokuapp.com/
-- Testes unitários
-- Utilização de cache do Next.js
-
----
-
-_O desafio acima foi cuidadosamente construído para propósitos de avaliação apenas. Já possuimos uma funcionalidade similar na nossa plataforma._
-
-Made with 💜 at Rocketseat
+Nome: Gabriel Rezende Guarini
+Email: gabrielrguarini@gmail.com
+LinkedIn: [Meu LinkedIn](https://www.linkedin.com/in/gabriel-guarini-832768111/)
+Feito com 💜 por Gabriel Guarini
